@@ -2,11 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf" 
-        Title="AreaDemo" Height="480" Width="640">
+        Title="AreaDemo" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="500" Width="1000">
     <DockPanel>
-        <oxy:Plot x:Name="plot1" Title="LineSeries and AreaSeries">
-            <oxy:AreaSeries ItemsSource="{Binding Measurements}" Title="Maximum/Minimum" DataFieldX="Time" DataFieldY="Maximum" DataFieldX2="Time" DataFieldY2="Minimum" Fill="LightBlue" StrokeThickness="0"/>
-            <oxy:LineSeries ItemsSource="{Binding Measurements}" Title="Average" DataFieldX="Time" DataFieldY="Value" Color="Blue" StrokeThickness="2" Smooth="False"/>
+        <oxy:Plot x:Name="plot1" Title="Texas Instruments TMP102 Temperature Sensor" Height="461" Width="783" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Title="Sample number" Position="Bottom" Minimum="0" Maximum="100" />
+                <oxy:LinearAxis Title="Temperature [°C]" Position="Left" Minimum="0" Maximum="100" FontSize="12" TicklineColor="#FF190000" TickStyle="Crossing" />
+            </oxy:Plot.Axes>
+            <oxy:AreaSeries ItemsSource="{Binding Measurements}" Title="Maximum/Minimum" DataFieldX="Time" DataFieldY="Maximum" DataFieldX2="Time" DataFieldY2="Minimum" Fill="LightBlue" StrokeThickness="1"/>
+            <oxy:LineSeries ItemsSource="{Binding Measurements}" Title="Average" DataFieldX="Time" DataFieldY="Value" Color="Blue" StrokeThickness="2" Smooth="True"/>
         </oxy:Plot>
+
     </DockPanel>
 </Window>
