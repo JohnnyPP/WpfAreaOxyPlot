@@ -30,8 +30,9 @@ namespace WpfAreaOxyPlot
 
         private void button1Connect_Click(object sender, RoutedEventArgs e)
         {
-            label1Temperature.Content = "Test1";
-
+            label1Temperature.Content = "Test";
         }
+
+      
     }
 }
