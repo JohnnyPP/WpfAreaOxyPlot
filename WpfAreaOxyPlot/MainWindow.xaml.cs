@@ -12,6 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OxyPlot.Wpf;
+using System.IO.Ports;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace WpfAreaOxyPlot
 {
@@ -21,6 +24,9 @@ namespace WpfAreaOxyPlot
     /// </summary>
     public partial class MainWindow : Window
     {
+        SerialPort serialPort1 = new SerialPort();
+        string recieved_data;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,11 +34,52 @@ namespace WpfAreaOxyPlot
             DataContext = vm;
         }
 
+       
+
         private void button1Connect_Click(object sender, RoutedEventArgs e)
         {
             label1Temperature.Content = "Test";
+
+            serialPort1.PortName = "COM3";
+            serialPort1.BaudRate = 9600;
+            serialPort1.DtrEnable = true;
+            serialPort1.Open();
+            
+            serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(Recieve);
+
+
+            /*if (serialPort1.IsOpen)
+            {
+                button1_Connect.Enabled = false;
+                button2_Disconnect.Enabled = true;
+            }*/
         }
 
+      
+
+        private delegate void UpdateUiTextDelegate(string text);
+        private void Recieve(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            recieved_data = serialPort1.ReadLine();
+            Dispatcher.Invoke(DispatcherPriority.Send, new UpdateUiTextDelegate(LineReceived), recieved_data);
+        }
+
+        private void LineReceived(string line)
+        {
+            // Assign the value of the recieved_data to the RichTextBox.
+            label1Temperature.Content = line;
+
+        }
+
+        private void button2Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Close();
+                //button1_Connect.Enabled = true;
+                //button2_Disconnect.Enabled = false;
+            }
+        }
       
     }
 }
