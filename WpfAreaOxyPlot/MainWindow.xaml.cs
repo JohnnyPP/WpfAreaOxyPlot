@@ -81,6 +81,14 @@ namespace WpfAreaOxyPlot
                 button2.IsEnabled = false;
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Close();
+            }
+        }
       
     }
 }

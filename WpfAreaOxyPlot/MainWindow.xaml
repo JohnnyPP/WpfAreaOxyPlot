@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
-        Title="AreaDemo" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="500" Width="1000">
+        Title="AreaDemo" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="500" Width="1000" Closing="Window_Closing">
     <Grid>
         <oxy:Plot x:Name="plot1" Title="Texas Instruments TMP102 Temperature Sensor" Height="461" Width="783" VerticalAlignment="Top" HorizontalAlignment="Right">
             <oxy:Plot.Axes>
