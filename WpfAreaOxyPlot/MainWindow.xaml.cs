@@ -48,11 +48,11 @@ namespace WpfAreaOxyPlot
             serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(Recieve);
 
 
-            /*if (serialPort1.IsOpen)
+            if (serialPort1.IsOpen)
             {
-                button1_Connect.Enabled = false;
-                button2_Disconnect.Enabled = true;
-            }*/
+                button1.IsEnabled = false;
+                button2.IsEnabled = true;
+            }
         }
 
       
@@ -76,8 +76,9 @@ namespace WpfAreaOxyPlot
             if (serialPort1.IsOpen)
             {
                 serialPort1.Close();
-                //button1_Connect.Enabled = true;
-                //button2_Disconnect.Enabled = false;
+
+                button1.IsEnabled = true;
+                button2.IsEnabled = false;
             }
         }
       
