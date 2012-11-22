@@ -66,8 +66,17 @@ namespace WpfAreaOxyPlot
 
         private void LineReceived(string line)
         {
-            // Assign the value of the recieved_data to the RichTextBox.
-            label1Temperature.Content = line;
+            
+            try
+            {
+                label1Temperature.Content = line;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
 
         }
 
